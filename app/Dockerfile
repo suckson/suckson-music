@@ -1,6 +1,7 @@
 FROM node:lts-alpine
 
-copy ./ /home/suckson-music
+copy ./ /home/suckson-music/app
+
 workdir /home/suckson-music/app
 
 RUN yarn install
