@@ -3,7 +3,7 @@ from flask import Flask, escape, request
 from musicdl import musicdl
 import logging
 from flask import jsonify
-
+from flask_cors import CORS, cross_origin
 logger=logging.getLogger('sihy')
 
 
@@ -23,10 +23,11 @@ def hello():
     name = request.args.get("name", "World")
     return 'Hello, {escape(name)}!'
 
-@app.route('/search', methods=['POST'])
+@app.route('/search', methods=['GET', 'POST'])
+@cross_origin()
 def search():
-   if request.method == 'POST':
-        search = request.form.get('value')
+        search = request.args.get('value')
+        print(search)
         search_results = client.search(search, target_srcs)
         print(search_results)
         return search_results
