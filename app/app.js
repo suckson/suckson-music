@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const proxy = require("http-proxy-middleware").createProxyMiddleware;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -21,6 +22,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.use("/fivesing", proxy(`https://wsaudiobssdlbig.yun.kugou.com`));
+app.use("/joox", proxy(`https://ak-hk.stream.music.joox.com`));
+app.use("/kugou", proxy(`https://webfs.ali.kugou.com`));
+app.use("/kuwo", proxy(`http://other.web.nf01.sycdn.kuwo.cn`));
+app.use("/migu", proxy(`https://app.pd.nf.migu.cn`));
+app.use("/netease", proxy(`http://m701.music.126.net`));
+app.use("/yiting", proxy(``));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

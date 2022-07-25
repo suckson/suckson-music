@@ -214,7 +214,7 @@ $("#volume")[0].onchange();
 
 $("#search")[0].onchange = function (e) {
   console.log(e.target.value);
-  axios.get("http://localhost:8001/search", 
+  axios.get("http://localhost:3001/search", 
       {
         params: {
           value: e.target.value,
@@ -222,9 +222,27 @@ $("#search")[0].onchange = function (e) {
       }
     )
     .then((res) => {
-      console.log(res);
+      const data = res.data || {}
+      let HTML = ``
+      for (item in data) {
+        HTML += `<li class="title">${item}</li>`
+        const result = data[item]
+        const resultHTML = result.reduce((pre,temp) => {
+          return pre += `<li class="title-item" url="${temp.download_url}">${temp.singers}-${temp.songname}</li>`
+        }, "")
+        HTML += resultHTML
+        jQuery("#listSearch").html(HTML)
+      }
     })
     .catch((err) => {
       console.log(err);
     });
 };
+
+jQuery("#listSearch").on("click", ".title-item", function() {
+  if(jQuery(this).attr('url')) {
+    mv.play(jQuery(this).attr('url'));
+  }else{
+    alert(12123)
+  }
+})

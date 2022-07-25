@@ -27,11 +27,8 @@ def hello():
 @cross_origin()
 def search():
         search = request.args.get('value')
-        print(search)
         search_results = client.search(search, target_srcs)
-        print(search_results)
         return search_results
-
 
 # 启动服务
 if __name__ == '__main__':
