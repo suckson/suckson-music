@@ -213,8 +213,7 @@ $("#volume")[0].onchange = function () {
 $("#volume")[0].onchange();
 
 $("#search")[0].onchange = function (e) {
-  console.log(e.target.value);
-  axios.get("http://localhost:3001/search", 
+  axios.get("http://119.91.113.37:3001/search", 
       {
         params: {
           value: e.target.value,
