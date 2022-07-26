@@ -13,4 +13,4 @@ ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST 0.0.0.0
 
 
-CMD ["flask", "run", "-h", "0.0.0.0", "-p", "8000"]
+CMD ["flask", "run", "-h", "0.0.0.0", "-p", "3001"]
