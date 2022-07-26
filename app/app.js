@@ -29,8 +29,7 @@ app.use("/kugou", proxy(`https://webfs.ali.kugou.com`));
 app.use("/kuwo", proxy(`http://other.web.nf01.sycdn.kuwo.cn`));
 app.use("/migu", proxy(`https://app.pd.nf.migu.cn`));
 app.use("/netease", proxy(`http://m701.music.126.net`));
-app.use("/yiting", proxy(``));
-
+app.use("/yiting", proxy(`http://m701.music.126.net`));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
